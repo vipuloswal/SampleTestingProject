@@ -20,6 +20,7 @@ public class homePageBDD {
     public void openApplication(String url) {//throws io.cucumber.java.PendingException {
         //below line will be added for windows, in case of Mac we have placed chrome driver to
         //Users/vipuloswal/Bin
+        
         //System.setProperty("webdriver.driver","\\Documents\\Learning\\Selenium\\chromedriver");
         driver = new ChromeDriver();
         driver.get(url);
