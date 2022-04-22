@@ -1,32 +1,34 @@
 package PageObjectModel.Step;
 
 import PageObjectModel.Page.homePage;
+import net.thucydides.core.annotations.Step;
+import net.thucydides.core.steps.ScenarioSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class homePageSteps {
+public class homePageSteps extends ScenarioSteps {
 
-    WebDriver driver;
-
+    homePage homePage;
     /*public homePageSteps(WebDriver driver){
         this.driver=driver;
     }*/
 
-    public void launchUrl(String url){
-        driver = new ChromeDriver();
-        driver.get(url);
-        driver.manage().window().maximize();
+    @Step
+    public void openApplicationWithURL(String url){
+        //below line will be added for windows to set chrome driver path, in case of Mac we have placed chrome driver to
+        //Users/vipuloswal/Bin
+        homePage.openApplicationWithURL(url);
     }
 
+    @Step
     public void selectTripType(String tripType) {
 
-        homePage homePageObj=new homePage(driver);
-
-        By tripTypeOptions = By.xpath("//label[contains(@class, 'radio__secondary')]");
+        /*By tripTypeOptions = By.xpath("//label[contains(@class, 'radio__secondary')]");
 
         List<WebElement> tripTypeOptionsList = driver.findElements(tripTypeOptions);
 
@@ -37,16 +39,17 @@ public class homePageSteps {
         } else if (tripType.equalsIgnoreCase("Multi-city")) {
             tripTypeOptionsList.get(2).click();
         }
-        /*if (tripType.equalsIgnoreCase("One way")) {
-            homePageObj.getTripTypeOptionsList().get(0).click();
+*/
+        if (tripType.equalsIgnoreCase("One way")) {
+            homePage.getTripTypeOptionsList().get(0).click();
         } else if (tripType.equalsIgnoreCase("Round trip")) {
-            homePageObj.getTripTypeOptionsList().get(1).click();
+            homePage.getTripTypeOptionsList().get(1).click();
         } else if (tripType.equalsIgnoreCase("Multi-city")) {
-            homePageObj.getTripTypeOptionsList().get(2).click();
-        }*/
+            homePage.getTripTypeOptionsList().get(2).click();
+        }
     }
 
-    public void closeBrowser(){
-        driver.quit();
+    public void setSourceAndDestinationLocation(String sourceLocation, String destinationLocation) {
+
     }
 }
